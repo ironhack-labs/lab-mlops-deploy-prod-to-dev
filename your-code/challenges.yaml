@@ -1,0 +1,5 @@
+Problems:
+
+- had to remove pip install from my code
+- had to make sure that the other persons environment is pip and not conda
+- had to add relative paths instead of absolute paths to my code
