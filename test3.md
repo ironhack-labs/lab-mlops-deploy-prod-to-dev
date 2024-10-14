@@ -1,34 +1,60 @@
-# # Lab | MLOps Deployment from PROD to DEV
+![Ironhack Logo](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-## Introduction
+# Lab | MLOps Deployment from PROD to DEV
 
-The goal of this lab is to practice deploying models from a production environment back to a development environment using image segmentation. The lab includes hands-on exercises to help you understand and apply these concepts.
+## Steps Taken
 
-## Getting Started
+1. **Created Repository**:
+   - I began by creating a new repository on GitHub Desktop to store my project files and track changes.
 
-1. **Open the Jupyter Notebook**: 
-   - In this lab, I worked on the `main.ipynb` file. To open it, I navigated to the directory containing the file and launched Jupyter Notebook with the following command:
+2. **Created `test3.py` File**:
+   - I added a Python file named `test3.py` to the repository for testing purposes.
+
+3. **Opened Git Bash**:
+   - I launched Git Bash to work with Git commands directly from the terminal.
+
+4. **Created a Virtual Environment**:
+   - In the project directory, I created a virtual environment to manage dependencies:
      ```bash
-     jupyter notebook
+     python -m venv env_name
      ```
-   - This opened a webpage where I clicked on `main.ipynb` to start working on the lab.
 
-2. **Follow the Instructions**: 
-   - Once inside `main.ipynb`, I followed the instructions for each cell, completed the exercises, and tested my solutions by running the cells.
-   - I made sure to save my progress periodically.
+5. **Installed Necessary Packages**:
+   - With the virtual environment activated, I installed the packages required for the lab. For example:
+     ```bash
+     pip install pandas
+     ```
+
+6. **Created the `requirements.txt` Document**:
+   - I generated a `requirements.txt` file with the installed packages to document the dependencies:
+     ```bash
+     pip freeze > requirements.txt
+     ```
+
+7. **Initialized the Repository, Added Files, and Committed Changes**:
+   - In Git Bash, I initialized the repository, added the files, and committed the changes:
+     ```bash
+     git init
+     git add .
+     git commit -m "Initial commit with test3.py and requirements.txt"
+     ```
+
+8. **Shared Repository Link with Partner**:
+   - I shared the repository link with my partner, Dani, to collaborate. Dani used this link to create a pull request.
+
+9. **Repository Link**:
+   - [GitHub Repository](https://github.com/cbertopt/test3)
+
+10. **Dani Forked and Modified the Repository**:
+    - Dani forked my repository, made a modification to the `README.md`, and then created a pull request for the changes.
+
+11. **Merged Pull Request**:
+    - I reviewed Dani's modifications and approved the pull request. After merging, the collaboration was complete.
 
 ## Using GitHub Desktop and Git Bash
 
 ### GitHub Desktop
-1. **Add and Commit Changes**:
-   - After completing the lab, I used GitHub Desktop to add my changes. I selected the modified `main.ipynb` file and included a brief commit message describing the work I had done.
-   - I clicked **Commit to main** to save my changes locally.
-
-2. **Push to GitHub**:
-   - After committing, I used the **Push origin** button in GitHub Desktop to push my branch to the remote repository on GitHub. This made my work accessible on GitHub and ready for review.
+I utilized GitHub Desktop to track and commit my changes visually, allowing me to push updates seamlessly to GitHub.
 
 ### Git Bash
-Alternatively, I also used Git Bash to manage my version control. Here’s a summary of the commands I used:
-1. **Navigate to the Project Directory**:
-   ```bash
-   cd path/to/your-project-directory
+For command-line control, I used Git Bash to perform Git operations such as initializing the repository, adding files, committing changes, and managing pull requests.
