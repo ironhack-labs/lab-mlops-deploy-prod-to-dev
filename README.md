@@ -1,20 +1,31 @@
+
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# Lab | MLOps Deployment from PROD to DEV
+# Lab | Regression Analysis
 
 ## Introduction
 
-The goal of this lab is to help you practice the concepts you learned in the lesson and provide you with some hands-on experience using image segmentation.
+Regression analysis is one of the most fundamental and powerful algorithms used in data analytics and data science. In this lab, we are going to apply what we have learned about different types of regressions, and use them to understand the trends in our data, and predict future values of our outcome.
+
 
 ## Getting Started
 
-In this lab you will be working on [main.ipynb](your-code/main.ipynb). To launch it, first navigate to the directory that contains `main.ipynb` in Terminal, then execute `jupyter notebook`. In the webpage that is automatically opened, click the `main.ipynb` link to launch it.
+Go to the folder lab-regression-analysis in the GitHub repo. Open the file `lab-regression-analysis.ipynb` in the `your-code` directory. Read the question carefully and provide thoughtful solutions in the space provided. The datasets to be used in the exercises has been provided on GitHub here.
 
-When you are on `main.ipynb`, read the instructions for each cell and provide your answers. Make sure to test your answers in each cell and save. Jupyter Notebook should automatically save your work progress. But it's a good idea to periodically save your work manually just in case.
+Happy Learning!
+
+
+## Expectations
+
+- Write clean, well-commented code
+- Fully explain your responses where necessary
+- Refer to the lecture notes if you have questions
+- Don't be afraid to ask your TAs for help!
+
 
 ## Deliverables
 
-- `main.ipynb` with your responses to each of the exercises.
+- `lab-regression-analysis.ipynb` with your responses
 
 
 ## Submission
