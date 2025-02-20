@@ -1,0 +1,4 @@
+
+---
+
+In this project I worked with Ginosca. I was the developer and she was the gatekeeper. I followed the instructions of creating a project, venv, pip installing, writing a `requirements.txt` with `pip freeze > requirements.txt`, and pushing to github. Everything went well, except for the pull request on my own repo. For solving this issue, I created a new branch and uploaded another file to the repo. This way, I was able to create a pull request. Ginosca was able to pull the code, create a venv, install the requirements, and run the notebook. Everything went well. We were able to swap roles and repeat the process. Other faced issues when swapping roles are described on [her project](https://github.com/gi2302/lab-mlops-deploy-prod-to-dev).
