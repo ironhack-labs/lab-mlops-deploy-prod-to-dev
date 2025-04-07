@@ -1,0 +1,65 @@
+Developer Role:
+
+1.	Repository Setup: 
+        git clone <remote-repo-url>
+
+2.	Project Preparation
+•	Used Project: Used an existing project.
+•	Project Directory: Copied the existing project files into the local repository folder to prepare for version control.
+
+3.	Environment Setup
+•	Python Version Management:
+o	Used pyenv to manage Python versions:
+                           pyenv install 3.13.0
+                           pyenv local 3.13.0
+•	Virtual Environment (venv):          
+o	Created a virtual environment using the selected Python version:
+                  python -m venv venv
+                 source venv/bin/activate
+•	Installed Dependencies:
+            Installed required packages via pip.
+•	Generated requirements.txt:
+             pip freeze > requirements.txt
+  
+4.	 Git Workflow
+o	Initialized Git: 
+git init
+o	Staged Files:  
+      git add [file name]
+o	Initial Commit: 
+git commit -m "Initial commit"
+
+5.	 Push to Remote Repository
+o	Connected Remote Repo: 
+by using git remote add origin <remote-repo-url>
+o	Pushed to Main Branch: 
+git push -u origin main
+6.	 Pull Request Creation:
+•	Navigated to the remote repository.
+•	Opened a new Pull Request from main branch.
+•	Submitted PR for code review and integration.
+
+Gatekeeper Role:
+
+As gatekeeper first i reviewed the pull request created by my partner,
+everything seems good so i merged the pull request.
+pull the latest changes if any from the remote repository using this command:
+git pull origin main
+
+To ensure the project runs in a controlled and consistent environment, I performed the following steps:
+
+•	Navigated to the project directory
+•	setting up pyenv to manage Python versions in your shell environment
+          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+          echo 'command -v pyenv >/dev/null || 
+          export  PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+         echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+•	brew install pyenv
+•	pyenv install 3.13.0
+•	pyenv global 3.13.0
+•	pyenv --version (to check the version)
+•	Created a virtual environment (venv) using: python -m venv myenv
+•	source myenv/bin/activate (to activate the environment)
+•	Installed the required dependencies using pip install -r requirements.txt using this command: python -m venv venv
+
+
