@@ -2,6 +2,16 @@
 
 # Lab | MLOps Deployment from PROD to DEV
 
+## Important links
+Link to Repositories:
+
+1- https://github.com/raneemalshehri/week6day2 > Developer Role (Raneem) &Gatekeeper Role (Nada)
+
+2-https://github.com/Na-nm/W6 > Developer Role (Nada) &Gatekeeper Role (Raneem)
+
+Link to the report for more details: https://docs.google.com/document/d/1xeL13QE03HKLwub7fjJ37iwbuFSoa8w02-WVhv3Px_8/edit?usp=sharing
+
+
 ## Introduction
 
 The goal of this lab is to help you practice the concepts you learned in the lesson and provide you with some hands-on experience using image segmentation.
