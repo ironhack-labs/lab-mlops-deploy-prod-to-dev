@@ -1,0 +1,16 @@
+## 📝 MLOps Deployment Report
+
+### 👤 Developer: Shatha
+- Activated local environment: `Ironhack-week6`
+- Generated `requirements.txt` using `conda list -e`
+- Created a new branch: `new-branch` to isolate changes
+- Added project code: `your-code/Project1.ipynb`
+- Generated `environment.yml` using `conda env export`
+- Committed and pushed all changes to the remote GitHub repository
+- Opened a Pull Request from `new-branch` for code review
+
+### 🔐 Gatekeeper: Sahar
+- Cloned the forked repository from Shatha's GitHub
+- Switched to the `new-branch` to review the new changes
+- Reviewed the code and verified the content of the notebook
+- Approved and merged the Pull Request
