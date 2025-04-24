@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/saraq/OneDrive/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%86%D8%AF%D8%A7%D8%AA/%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8/ironhack/mlop/lab-mlops-deploy-prod-to-dev/your-code/mlruns/0/58714f27af344282a1d9672de530585c/artifacts
+end_time: 1745484235738
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 58714f27af344282a1d9672de530585c
+run_name: handsome-bug-490
+run_uuid: 58714f27af344282a1d9672de530585c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745484225991
+status: 3
+tags: []
+user_id: saraq
