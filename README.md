@@ -1,22 +1,24 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# Environment Setup (macOS with Conda)
 
-# Lab | MLOps Deployment from PROD to DEV
+## 1. Create Environment
+```bash
+conda create -n myenv python=3.11
+conda activate myenv
+2. Install Dependencies
+# From requirements.txt
+conda install --file requirements.txt
 
-## Introduction
+# OR from environment.yml (preferred)
+conda env create -f environment.yml
+3. Export Environment
+# Export to text file
+conda list --export > requirements.txt
 
-The goal of this lab is to help you practice the concepts you learned in the lesson and provide you with some hands-on experience using image segmentation.
-
-## Getting Started
-
-In this lab you will be working on [main.ipynb](your-code/main.ipynb). To launch it, first navigate to the directory that contains `main.ipynb` in Terminal, then execute `jupyter notebook`. In the webpage that is automatically opened, click the `main.ipynb` link to launch it.
-
-When you are on `main.ipynb`, read the instructions for each cell and provide your answers. Make sure to test your answers in each cell and save. Jupyter Notebook should automatically save your work progress. But it's a good idea to periodically save your work manually just in case.
-
-## Deliverables
-
-- `main.ipynb` with your responses to each of the exercises.
-
-
-## Submission
-
-Upon completion, add your deliverables to git. Then commit git and push your branch to the remote.
+# Export full environment with channels
+conda env export > environment.yml
+4. Use in VS Code
+Open project in VS Code
+Press Cmd + Shift + P → Python: Select Interpreter
+Choose your conda environment (myenv)
+5. Deactivate
+conda deactivate
