@@ -19,4 +19,5 @@ When you are on `main.ipynb`, read the instructions for each cell and provide yo
 
 ## Submission
 
-Upon completion, add your deliverables to git. Then commit git and push your branch to the remote.
+Upon completion, add your deliverables to git. Then commit git and push your branch to the remote.- Lab MLOps completado
+- Simulation of role swap
