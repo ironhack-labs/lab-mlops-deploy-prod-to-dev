@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The goal of this lab is to help you practice the concepts you learned in the lesson and provide you with some hands-on experience using image segmentation.
+The goal of this lab is to help you practice the concepts you learned in the lesson and provide you with some hands-on experience with collaborative teamwork, product lifecycle and Pull Requests.
 
 ## Getting Started
 
@@ -15,7 +15,6 @@ When you are on `main.ipynb`, read the instructions for each cell and provide yo
 ## Deliverables
 
 - `main.ipynb` with your responses to each of the exercises.
-
 
 ## Submission
 
