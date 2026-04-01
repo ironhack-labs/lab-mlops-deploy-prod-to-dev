@@ -162,7 +162,7 @@ After merging the PR, before testing the code:
 
   * If it fails, the Developer must fix the environment file and update the PR.
 
-## Things to keep in mind
+## Things to keep in mind 
 
 * If you already created `project-env` before, you may need to remove it or use a different name.
 * Consider adding a `.gitignore` so you don’t commit unnecessary files (env folders, caches, `.ipynb_checkpoints`, `__pycache__`, etc.).  

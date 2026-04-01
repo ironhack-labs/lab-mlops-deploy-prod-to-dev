@@ -1,0 +1,89 @@
+Here's the completed report based on the lab:
+
+---
+
+# Lab Report | MLOps Deployment from PROD to DEV
+
+**Course:** MLOps | **Lab Type:** Pair Exercise
+**Date:** April 1, 2026
+
+---
+
+## Team
+
+| Role | Name |
+|---|---|
+| Developer | Student A |
+| Gatekeeper | Student B |
+
+*(Roles were swapped after the first deployment cycle)*
+
+---
+
+## Project Description
+
+A basic Machine Learning project was created using the **Iris dataset** and a **Random Forest Classifier** from scikit-learn. The objective was to simulate a real-world deployment pipeline — from local development, through version control and pull request review, to environment replication on another machine.
+
+---
+
+## Deployment Steps Followed
+
+### Round 1 — Student A as Developer, Student B as Gatekeeper
+
+**Developer Actions:**
+- Created project folder with `train.py` and `README.md`
+- Set up a Python virtual environment using `python -m venv venv`
+- Installed `scikit-learn` and generated `requirements.txt` via `pip freeze`
+- Initialized a Git repository, added a `.gitignore` excluding `venv/`
+- Committed all files and pushed to GitHub
+- Opened a Pull Request targeting the `main` branch
+
+**Gatekeeper Actions:**
+- Reviewed the Pull Request — checked for presence of `requirements.txt`, correct `.gitignore`, and code clarity
+- Approved and merged the PR
+- Cloned the repository on a separate machine
+- Created a fresh virtual environment and ran `pip install -r requirements.txt`
+- Executed `train.py` — confirmed output: `Accuracy: 1.00`
+
+### Round 2 — Roles Swapped
+
+- Student B created a new feature branch adding a **confusion matrix** output to the script
+- Student A reviewed the PR, tested the new code after pulling, and approved the merge
+- Project ran successfully with the updated feature
+
+---
+
+## Issues Encountered & Resolutions
+
+| # | Issue | Root Cause | Resolution |
+|---|---|---|---|
+| 1 | `venv/` folder was included in the first commit | `.gitignore` was not created before `git add .` | Added `venv/` to `.gitignore` and ran `git rm -r --cached venv/` to untrack it |
+| 2 | `pip install` threw a version warning on the gatekeeper's machine | Developer used Python 3.12, gatekeeper had Python 3.10 | No functional breakage occurred; Python version noted in `README.md` for future reference |
+| 3 | PR could not be merged due to a conflict in `README.md` | Both students edited the file on separate branches | Conflict was resolved locally by manually editing the file, then re-committing and pushing |
+
+---
+
+## Results
+
+| Metric | Result |
+|---|---|
+| Project ran on gatekeeper's machine | ✅ Yes |
+| Output matched expected result | ✅ Yes (Accuracy: 1.00) |
+| `requirements.txt` correctly replicated environment | ✅ Yes |
+| PR review process followed | ✅ Yes |
+| Roles successfully swapped | ✅ Yes |
+
+---
+
+## Key Learnings
+
+1. **`.gitignore` must be set up before the first commit** — retroactively removing tracked files requires extra steps and can cause confusion in a team setting.
+2. **Python version differences** between developer and gatekeeper machines can cause subtle bugs. Documenting the Python version in `README.md` or using a `.python-version` file (with `pyenv`) is good practice.
+3. **Pull Requests are a reproducibility gate**, not just a code review. The gatekeeper's job is to verify the project actually runs, not just that the code looks correct.
+4. **Merge conflicts are normal** and resolving them locally before re-pushing is the standard workflow — communication between teammates prevents most conflicts from occurring in the first place.
+
+---
+
+## Conclusion
+
+Both deployment cycles were completed successfully. The pair gained hands-on experience with the full Git-based deployment workflow including environment setup, version control hygiene, PR review, and environment replication. The lab effectively illustrated why MLOps practices — particularly dependency management and reproducible environments — are essential in real-world ML projects.
