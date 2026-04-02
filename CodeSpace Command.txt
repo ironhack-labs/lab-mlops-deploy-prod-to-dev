@@ -1,0 +1,43 @@
+🔹Pushing Initial Project Files to GitHub 
+
+# Create virtual environment and activate it
+python3 -m venv venv
+source venv/bin/activate
+
+# Install required packages
+pip install numpy matplotlib tensorflow
+
+# Freeze dependencies to requirements.txt
+pip freeze > requirements.txt
+
+# Initialize git and set up .gitignore
+git init
+echo "venv/" > .gitignore
+
+# Add files to git
+git add Cat_and_Dog_Classsification.ipynb requirements.txt .gitignore
+
+# Commit the changes
+git commit -m "Initial commit: Add notebook and requirements"
+
+# Add remote repository and push
+git remote add origin https://github.com/Wareef14/LAB-MLOps-Deployment-from-PROD-to-DEV.git
+git branch -M main
+git push -u origin main
+# Create a new branch 'dev' from 'main'
+git checkout -b dev
+git push -u origin dev
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹Resolving the 'Nothing to Compare' Issue by Editing README
+
+
+echo "
+
+This project develops a convolutional neural network (CNN) model using TensorFlow to classify images of cats and dogs. It serves as a test implementation within the LAB-MLOps-Deployment-from-PROD-to-DEV repository, designed to showcase MLOps practices such as version control, branch management, and deployment workflows." >> README.md
+git add README.md
+git commit -m "Enhance README.md with refined project description"
+git push origin dev
+
+
