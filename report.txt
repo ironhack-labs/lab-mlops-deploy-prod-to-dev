@@ -1,0 +1,62 @@
+
+Report
+
+Lab | MLOps Deployment from PROD to DEV
+
+1.Participants:
+- Developer: [Lina]
+- Gatekeeper: [Alrumaysa]
+
+2.Tools and Technologies:
+
+- Python 3.12.9
+- Git & GitHub
+- Virtual Environment
+- environment.yml
+- Jupyter Notebook 
+
+## Steps Followed:
+
+#### Developer Role:
+
+- Created a new project containing a main.py file (Image Color Inverter.pynb).
+- Set up a virtual environment using venv and activated it.
+- Installed necessary packages using pip install.
+- Generated a environment.yml file using conda env export > environment.yml.
+- Initialized a Git repository using git init.
+- Excluded the venv folder from being tracked.
+- Pushed the project to GitHub using git remote and git push.
+- Created a Pull Request (PR) on GitHub.
+
+#### Gatekeeper Role:
+- Reviewed the Pull Request and ensured the code was clean and error-free.
+- Merged the Pull Request into the main branch.
+- Pulled the latest changes from GitHub using git pull.
+- Created a new virtual environment and installed dependencies from environment.yml.
+- Ran the project successfully without errors.
+- Provided feedback to the developer on any potential improvements.
+
+## Role Swap:
+
+The roles were swapped, and both participants successfully repeated the process, ensuring each person had the experience of both development and review.
+
+## Challenges Faced:
+
+- Initially, the venv folder was mistakenly added to Git, which required removing it from version control.
+- A minor typo was found in environment.yml for one of the libraries, which was corrected manually.
+- Ensured both developers were using the same Python version to avoid compatibility issues.
+- Problem in Gatekeeper: I had a problem downloading the environment.yml file. 
+  It could not download the libraries.
+  I updated the file and downloaded the firmware again and it worked.
+
+##  Final Outcome:
+- The process was successfully carried out.
+- The project ran smoothly in both the developer's and gatekeeper's environments.
+- Both roles (developer and gatekeeper) were fully practiced.
+- Swap Roles and Repeat: Done
+
+
+## Conclusion:
+This exercise provided a practical experience of the deployment process in MLOps, helping both participants understand the flow from development to production.
+ Communication and following version control best practices were key to ensuring a smooth transition.
+
