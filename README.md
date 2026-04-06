@@ -1,168 +1,92 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# lab-mlops-deploy-prod-to-dev
 
-# LAB | MLOps Deployment Workflow (DEV → PROD)
+A lab project demonstrating an MLOps workflow for deploying from a production environment to a development environment.
 
-## What you are shipping
+## Project Structure
 
-In this lab, you will collaborate on a small project repository that contains **all files required to run the project** (script or notebook) and share the **exact environment** needed to run it. 
+```
+├── main.py              # Entry point
+├── pyproject.toml       # Project metadata and dependencies
+├── requirements.txt     # Pinned dependencies
+├── uv.lock              # Lockfile for reproducible installs
+└── .gitignore
+```
 
-Work in pairs to simulate a real ML engineering workflow:
+## Prerequisites
 
-- **Developer** writes code and proposes it through a **Pull Request**.
-- **Gatekeeper** reviews, tests, and approves changes before they reach production (`main`).
-- You will **switch roles later**, so both students practice each role.
+- Python 3.8+
+- [`uv`](https://github.com/astral-sh/uv) (recommended) **or** `pip`
 
-## Gatekeeper (first step)
+## Setup
 
-1. Create a repo on GitHub  
-2. **Add a README** → this creates the `main` branch  
-3. Add your partner as a **collaborator**  
-4. **Do NOT write code or run `git init`**. Your job is to **own & review**, not build.
+### Clone the repository
 
-## Developer
+```bash
+git clone https://github.com/richim96/lab-mlops-deploy-prod-to-dev.git
+cd lab-mlops-deploy-prod-to-dev
+```
 
-- Clone the repo (do **NOT** run `git init`):
+### Create and activate a virtual environment
 
-  ```bash
-  git clone <repo-url>
-  cd <repo>
-  ```
+**Using `uv` (recommended):**
 
-* Create a branch for your work:
+```bash
+uv venv .venv
+source .venv/bin/activate      # macOS/Linux
+.venv\Scripts\activate         # Windows
+```
 
-  ```bash
-  git checkout -b branch-name
-  ```
+**Using standard `venv`:**
 
-* Add your code (all files necessary for the project)
-  * **Required files (minimum)**
-    * `README.md`
-    * your project code (script or notebook)
-    <!-- * `environment.yml` -->
+```bash
+python -m venv .venv
+source .venv/bin/activate      # macOS/Linux
+.venv\Scripts\activate         # Windows
+```
 
-* Commit and push **your branch only**:
+### Install dependencies
 
-  ```bash
-  git add .
-  git commit -m "Add setup files"
-  git push -u origin branch-name
-  ```
+**Using `uv`:**
 
-* Open a Pull Request → from your branch into `main`
+```bash
+uv pip install -r requirements.txt
+```
 
-:exclamation: If you need to update the PR, commit and push to the same branch again. The PR will update automatically.
+**Using `pip`:**
 
-## Gatekeeper after PR
+```bash
+pip install -r requirements.txt
+```
 
-* Review the PR and merge it
-* Clone the repo:
+## Usage
 
-  ```bash
-  git clone <repo-url>
-  cd <repo>
-  ```
+```bash
+python main.py
+```
 
-* Pull the latest code from `main`:
+## Git Workflow
 
-  ```bash
-  git pull origin main
-  ```
+This project follows a `prod → dev` deployment pattern using Git branches:
 
-* Run the project code and test it (if it’s a notebook, you just open it in Jupyter/VS Code and run it)
+- `main` — production branch
+- `dev` — development branch
 
-## Gatekeeper Checklist
+To sync changes from `main` into `dev`:
 
-* Does the code run?
-* Are required files present?
-* Was anything unnecessary committed (env folders, caches, etc.)?
+```bash
+git checkout dev
+git merge main
+git push origin dev
+```
 
-If something is wrong → request changes from Developer. Then **switch roles**.
-Everyone should experience **both Developer and Gatekeeper duties**.
+To contribute:
 
+```bash
+git checkout -b feat/your-feature
+# make your changes
+git add .
+git commit -m "feat: describe your change"
+git push origin feat/your-feature
+```
 
-## BONUS: Environment Sharing (with Conda!)
-
-Previously in this lab you learned how to collaborate safely in a team using:
-- branches
-- pull requests
-- a Gatekeeper protecting `main`
-
-Now we take our workflow one step closer to real MLOps:
-The Developer must share the **exact environment** required to run the code,
-and the Gatekeeper must **rebuild that environment** before testing it.
-
-### What Is a Virtual Environment?
-
-When you install libraries like pandas, numpy, or TensorFlow, they stay on your computer.
-
-Over time your computer collects different versions of packages, and projects start **breaking each other**.
-A **virtual environment** is like a **separate mini-computer inside your computer**.
-It only contains the libraries (and versions) that a single project needs.
-
-
-### Why environments matter in MLOps
-
-If every machine uses the same environment, then the code will run the same everywhere:
-
-**DEV → TEST → PROD**
-
-This is how real ML teams ensure models don’t “work on my machine only.”
-
----
-
-So, let's upgrade our lab! 💪
-
-
-## Developer’s new duty
-
-Before writing code, the Developer should now **create a Conda virtual environment for the project**.
-
-* In **VS Code terminal** (bash):
-
-  ```bash
-  conda create -n project-env python=3.11 -y
-  conda activate project-env
-  ```
-
-* Install the libraries you need (example):
-
-  ```bash
-  conda install pandas requests -y
-  ```
-
-* Work on your code normally
-
-* Then export your environment to share it:
-
-  ```bash
-  conda env export --from-history > environment.yml
-  ```
-
-* Commit and push `environment.yml` as part of your **Pull Request**.
-
-  * The Gatekeeper will reproduce the environment using this file.
-
-## Gatekeeper’s new duty
-
-After merging the PR, before testing the code:
-
-* Recreate the environment using the Developer’s environment file:
-
-  ```bash
-  conda env create -f environment.yml -n project-env
-  ```
-
-* Activate it:
-
-  ```bash
-  conda activate project-env
-  ```
-
-* Run the project (script or notebook).
-
-  * If it fails, the Developer must fix the environment file and update the PR.
-
-## Things to keep in mind
-
-* If you already created `project-env` before, you may need to remove it or use a different name.
-* Consider adding a `.gitignore` so you don’t commit unnecessary files (env folders, caches, `.ipynb_checkpoints`, `__pycache__`, etc.).  
+Then open a pull request into `dev`.
