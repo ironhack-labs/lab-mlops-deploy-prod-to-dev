@@ -1,0 +1,40 @@
+# Conda environments
+env/
+*.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Models (binary artifacts)
+*.bin
+*.pkl
+*.joblib
+Models/
+
+# Data files (large parquet/csv)
+Data/
+*.parquet
+*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
