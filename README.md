@@ -161,6 +161,7 @@ After merging the PR, before testing the code:
 * Run the project (script or notebook).
 
   * If it fails, the Developer must fix the environment file and update the PR.
+    
 
 ## Things to keep in mind
 
