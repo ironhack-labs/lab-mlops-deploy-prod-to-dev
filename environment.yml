@@ -1,0 +1,13 @@
+name: project-env
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - requests
+  - scikit-learn
+  - jupyter
+  - ipykernel
+  - matplotlib
+  - seaborn
+  - openpyxl
