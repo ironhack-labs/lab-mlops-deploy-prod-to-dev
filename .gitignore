@@ -1,0 +1,19 @@
+# Environnements
+.conda/
+env/
+venv/
+.venv/
+*.egg-info/
+
+# Caches Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sorties generees par le script (regenerables : elles n'ont pas a etre versionnees)
+outputs/
+
+# Systeme
+.DS_Store
