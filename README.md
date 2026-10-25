@@ -4,165 +4,139 @@
 
 ## What you are shipping
 
-In this lab, you will collaborate on a small project repository that contains **all files required to run the project** (script or notebook) and share the **exact environment** needed to run it. 
+In this lab you work **in pairs** on one shared repository, the way an ML team does. The project is the churn model from the **MLOps Essentials** lesson: `starter/train.py` trains a pipeline and saves it with its metadata, and `starter/check_model.py` is the check that must pass before anything reaches `main`.
 
-Work in pairs to simulate a real ML engineering workflow:
+- The **Developer** writes code on a branch and proposes it through a **pull request (PR)**.
+- The **Gatekeeper** owns `main`: they rebuild the environment **from the repository alone**, run the check, and merge only if everything passes.
+- In round 2 you **switch roles**, and the new Developer ships a better model.
 
-- **Developer** writes code and proposes it through a **Pull Request**.
-- **Gatekeeper** reviews, tests, and approves changes before they reach production (`main`).
-- You will **switch roles later**, so both students practice each role.
+**By the end, you can:**
 
-## Gatekeeper (first step)
+1. Apply the DEV → PROD workflow: a branch, a pull request, a review and a merge into `main`.
+2. Make a project reproducible with a virtual environment and a pinned `requirements.txt`, and verify that a partner can rebuild it.
 
-1. Create a repo on GitHub  
-2. **Add a README** → this creates the `main` branch  
-3. Add your partner as a **collaborator**  
-4. **Do NOT write code or run `git init`**. Your job is to **own & review**, not build.
+**Time:** about 2 hours for both rounds. **Prerequisites:** git and GitHub from the first weeks, and today's lesson (virtual environments, `requirements.txt`, saving a pipeline, the DEV → PROD workflow).
 
-## Developer
+## Round 1: ship the first model
 
-- Clone the repo (do **NOT** run `git init`):
+### Gatekeeper: create the repository (5 minutes)
 
-  ```bash
-  git clone <repo-url>
-  cd <repo>
+1. On GitHub, create a new **public** repository (for example `churn-mlops`) and tick **Add a README**: this creates the `main` branch.
+2. Add your partner as a **collaborator** (Settings → Collaborators).
+3. Do **not** write code. Your job is to own and review `main`.
+
+### Developer: prepare the project on a branch
+
+1. Clone the repository (do **not** run `git init`) and create a branch:
+
+   ```bash
+   git clone <repo-url>
+   cd <repo>
+   git checkout -b first-model
+   ```
+
+2. Copy the contents of this lab's `starter` folder into the repository: `train.py`, `check_model.py` and `data/churn.csv`.
+3. Create a virtual environment **inside the project**, install only what the project needs, and run it:
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate            # Windows: .venv\Scripts\activate
+   pip install pandas scikit-learn joblib
+   python train.py
+   python check_model.py
+   ```
+
+   **First checkpoint:** `train.py` prints `Saved models/churn_pipeline.joblib: LogisticRegression, cv_auc 0.816, test_auc 0.818`, and `check_model.py` prints `CHECK PASSED: test ROC AUC 0.818 (minimum 0.8)`.
+
+4. Write a `requirements.txt` with your **direct** dependencies, pinned to the versions you have (find them with `pip freeze` or `pip show pandas`), for example:
+
+   ```
+   pandas==2.3.3
+   scikit-learn==1.6.1
+   joblib==1.5.3
+   ```
+
+5. Add a `.gitignore` with at least `.venv/`, `models/`, `__pycache__/` and `.ipynb_checkpoints/`. The model is **not** committed: the Gatekeeper rebuilds it from the code and the data, which proves the project is reproducible.
+6. Update the `README.md`: what the project does, the Python version you used, and the commands to run it.
+7. Commit and push **your branch only**, then open a pull request from `first-model` into `main`:
+
+   ```bash
+   git add train.py check_model.py data/churn.csv requirements.txt .gitignore README.md
+   git commit -m "First churn model, with requirements and model check"
+   git push -u origin first-model
+   ```
+
+   **Second checkpoint:** the pull request shows six files and no `.venv` or `models` folder.
+
+### Gatekeeper: review, rebuild, check, merge
+
+1. Read the pull request on GitHub. Use the checklist below, and leave at least one comment.
+2. Fetch the branch and rebuild the environment **from scratch**, in a new virtual environment:
+
+   ```bash
+   git clone <repo-url> && cd <repo>          # or: git fetch && git checkout first-model
+   git checkout first-model
+   python -m venv .venv && source .venv/bin/activate
+   pip install -r requirements.txt
+   python train.py
+   python check_model.py
+   ```
+
+3. If anything fails, **request changes** in the pull request and explain what went wrong. The Developer fixes it on the same branch; the pull request updates by itself.
+4. When the check passes, **merge** the pull request into `main`.
+
+   **Third checkpoint:** `main` contains the project, the check passed on the Gatekeeper's machine, and the pull request has at least one review comment.
+
+### Gatekeeper checklist
+
+- Does the environment rebuild from `requirements.txt` alone?
+- Do `train.py` and `check_model.py` run, and does the check pass?
+- Are the required files present: code, data, `requirements.txt`, `.gitignore`, README?
+- Was anything committed that should not be: `.venv`, `models`, caches, `.env` files or keys?
+- Does the README say how to run the project?
+
+## Round 2: switch roles and ship a better model
+
+The former Gatekeeper is now the Developer, and the other way round.
+
+1. **New Developer:** pull `main`, create a branch `better-model`, rebuild the environment, and improve the model in `train.py`. For example, replace the logistic regression with a random forest (`RandomForestClassifier(n_estimators=200, random_state=42)`) or gradient boosting, as in the lesson. Update `requirements.txt` if you add a library. Run `train.py` and `check_model.py`, then open a pull request whose description gives the **old and the new** `cv_auc`.
+2. **New Gatekeeper:** review, rebuild, run the check and merge only if it passes **and** the new model is better than the one on `main` by cross-validation. Before you merge, ask the Developer in a review comment to raise `MIN_AUC` in `check_model.py` to `0.85` in the same pull request: the team's bar goes up with every better model.
+
+   **Fourth checkpoint:** two merged pull requests in the repository's history, one per round, each reviewed by the other person. With a random forest, `train.py` prints a `cv_auc` of about 0.92 and a `test_auc` of about 0.89.
+
+## Bonus
+
+Choose one:
+
+- **Conda instead of venv.** Repeat round 1 with `conda create -n churn python=3.12`, `conda env export --from-history > environment.yml` and `conda env create -f environment.yml`. What does `environment.yml` contain that `requirements.txt` does not?
+- **Automatic checks (continuous integration).** Add a GitHub Actions workflow that runs the check on every pull request, so the Gatekeeper sees the result before even opening the code. Save this as `.github/workflows/check.yml`:
+
+  ```yaml
+  name: Model check
+  on: pull_request
+  jobs:
+    check:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v5
+          with:
+            python-version: "3.12"
+        - run: pip install -r requirements.txt
+        - run: python train.py
+        - run: python check_model.py
   ```
 
-* Create a branch for your work:
+  Open a pull request with a deliberately worse model (for example `LogisticRegression(C=0.0001)`) and watch the check fail on GitHub.
 
-  ```bash
-  git checkout -b branch-name
-  ```
+## Deliverables
 
-* Add your code (all files necessary for the project)
-  * **Required files (minimum)**
-    * `README.md`
-    * your project code (script or notebook)
-    <!-- * `environment.yml` -->
+- The URL of your shared repository, with **two merged pull requests** (one per round), each reviewed by the other person. Both partners submit the same URL.
 
-* Commit and push **your branch only**:
+## Submission
 
-  ```bash
-  git add .
-  git commit -m "Add setup files"
-  git push -u origin branch-name
-  ```
+Submit the URL of the shared repository in the platform. Both partners must be able to see their own review comments and merges in the repository's history.
 
-* Open a Pull Request → from your branch into `main`
+## Data
 
-:exclamation: If you need to update the PR, commit and push to the same branch again. The PR will update automatically.
-
-## Gatekeeper after PR
-
-* Review the PR and merge it
-* Clone the repo:
-
-  ```bash
-  git clone <repo-url>
-  cd <repo>
-  ```
-
-* Pull the latest code from `main`:
-
-  ```bash
-  git pull origin main
-  ```
-
-* Run the project code and test it (if it’s a notebook, you just open it in Jupyter/VS Code and run it)
-
-## Gatekeeper Checklist
-
-* Does the code run?
-* Are required files present?
-* Was anything unnecessary committed (env folders, caches, etc.)?
-
-If something is wrong → request changes from Developer. Then **switch roles**.
-Everyone should experience **both Developer and Gatekeeper duties**.
-
-
-## BONUS: Environment Sharing (with Conda!)
-
-Previously in this lab you learned how to collaborate safely in a team using:
-- branches
-- pull requests
-- a Gatekeeper protecting `main`
-
-Now we take our workflow one step closer to real MLOps:
-The Developer must share the **exact environment** required to run the code,
-and the Gatekeeper must **rebuild that environment** before testing it.
-
-### What Is a Virtual Environment?
-
-When you install libraries like pandas, numpy, or TensorFlow, they stay on your computer.
-
-Over time your computer collects different versions of packages, and projects start **breaking each other**.
-A **virtual environment** is like a **separate mini-computer inside your computer**.
-It only contains the libraries (and versions) that a single project needs.
-
-
-### Why environments matter in MLOps
-
-If every machine uses the same environment, then the code will run the same everywhere:
-
-**DEV → TEST → PROD**
-
-This is how real ML teams ensure models don’t “work on my machine only.”
-
----
-
-So, let's upgrade our lab! 💪
-
-
-## Developer’s new duty
-
-Before writing code, the Developer should now **create a Conda virtual environment for the project**.
-
-* In **VS Code terminal** (bash):
-
-  ```bash
-  conda create -n project-env python=3.11 -y
-  conda activate project-env
-  ```
-
-* Install the libraries you need (example):
-
-  ```bash
-  conda install pandas requests -y
-  ```
-
-* Work on your code normally
-
-* Then export your environment to share it:
-
-  ```bash
-  conda env export --from-history > environment.yml
-  ```
-
-* Commit and push `environment.yml` as part of your **Pull Request**.
-
-  * The Gatekeeper will reproduce the environment using this file.
-
-## Gatekeeper’s new duty
-
-After merging the PR, before testing the code:
-
-* Recreate the environment using the Developer’s environment file:
-
-  ```bash
-  conda env create -f environment.yml -n project-env
-  ```
-
-* Activate it:
-
-  ```bash
-  conda activate project-env
-  ```
-
-* Run the project (script or notebook).
-
-  * If it fails, the Developer must fix the environment file and update the PR.
-
-## Things to keep in mind
-
-* If you already created `project-env` before, you may need to remove it or use a different name.
-* Consider adding a `.gitignore` so you don’t commit unnecessary files (env folders, caches, `.ipynb_checkpoints`, `__pycache__`, etc.).  
+`starter/data/churn.csv` is the telecom churn dataset used in Weeks 4 and 5 of the course.
