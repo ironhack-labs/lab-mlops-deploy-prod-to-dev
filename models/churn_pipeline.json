@@ -1,0 +1,32 @@
+{
+  "model": "RandomForestClassifier",
+  "model_name": "random_forest",
+  "trained_at": "2026-11-03T19:52:26+00:00",
+  "features": [
+    "Account Length",
+    "Int'l Plan",
+    "VMail Plan",
+    "VMail Message",
+    "Day Mins",
+    "Day Calls",
+    "Day Charge",
+    "Eve Mins",
+    "Eve Calls",
+    "Eve Charge",
+    "Night Mins",
+    "Night Calls",
+    "Night Charge",
+    "Intl Mins",
+    "Intl Calls",
+    "Intl Charge",
+    "CustServ Calls"
+  ],
+  "cv_auc": 0.9195948788054051,
+  "cv_auc_std": 0.015084930287867572,
+  "test_auc": 0.8883704105624887,
+  "python": "3.14.6",
+  "scikit-learn": "1.9.1",
+  "pandas": "3.1.0",
+  "joblib": "1.5.3",
+  "random_state": 42
+}
